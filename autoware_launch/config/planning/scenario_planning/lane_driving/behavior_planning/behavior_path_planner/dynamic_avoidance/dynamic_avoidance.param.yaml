@@ -14,6 +14,8 @@
 
         min_obstacle_vel: 0.0 # [m/s]
 
+        successive_num_to_entry_dynamic_avoidance_condition: 5
+
       drivable_area_generation:
         lat_offset_from_obstacle: 2.5 # [m]
         max_lat_offset_to_avoid: 0.5 # [m]
