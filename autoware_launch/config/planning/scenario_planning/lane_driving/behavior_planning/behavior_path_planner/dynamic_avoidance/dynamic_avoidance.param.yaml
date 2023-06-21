@@ -30,5 +30,5 @@
         # for opposite directional object
         oncoming_object:
           max_time_to_collision: 3.0 # [s]
-          start_duration_to_avoid: 18.0  # [s]
+          start_duration_to_avoid: 12.0  # [s]
           end_duration_to_avoid: 0.0  # [s]
