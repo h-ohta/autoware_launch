@@ -27,7 +27,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          ref: $BASE_BRANCH
+          ref: ${{ env.BASE_BRANCH }}
           fetch-depth: 0
 
       - name: Set git config
@@ -37,7 +37,7 @@ jobs:
 
       - name: Sync tag
         run: |
-          git remote add sync-target $SYNC_TARGET_REPOSITORY
+          git remote add sync-target ${{ env.SYNC_TARGET_REPOSITORY }}
           git fetch -pPtf --all
           git reset --hard "${{ inputs.sync-target-tag }}"
           git remote rm sync-target
@@ -47,7 +47,7 @@ jobs:
         id: generate-changelog
         uses: autowarefoundation/autoware-github-actions/generate-changelog@v1
         with:
-          git-cliff-args: origin/$BASE_BRANCH..HEAD
+          git-cliff-args: origin/${{ env.BASE_BRANCH }}..HEAD
 
       - name: Replace PR number to URL
         id: replace-pr-number-to-url
@@ -60,7 +60,7 @@ jobs:
           echo "$EOF" >> $GITHUB_OUTPUT
         env:
           CHANGELOG: ${{ steps.generate-changelog.outputs.changelog }}
-          REPO_URL: $SYNC_TARGET_REPOSITORY
+          REPO_URL: ${{ env.SYNC_TARGET_REPOSITORY }}
         shell: bash
 
       - name: Create PR
@@ -68,7 +68,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          base: $BASE_BRANCH
+          base: ${{ env.BASE_BRANCH }}
           branch: sync-tier4-upstream-${{ inputs.sync-target-tag }}
           title: "chore: sync upstream up to ${{ inputs.sync-target-tag }}"
           body: ${{ steps.replace-pr-number-to-url.outputs.changelog }}
