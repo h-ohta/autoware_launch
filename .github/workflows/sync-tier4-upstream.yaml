@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
     input:
       sync-target-tag:
-        description: ""
-        required: true
+        description: "sync-target-tag"
+        required: false
+        type: string
         default: ""
 
 jobs:
