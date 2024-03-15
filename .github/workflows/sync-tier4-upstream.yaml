@@ -8,7 +8,7 @@ on:
     input:
       sync-target-tag:
         description: ""
-        required: false
+        required: true
         default: ""
 
 jobs:
