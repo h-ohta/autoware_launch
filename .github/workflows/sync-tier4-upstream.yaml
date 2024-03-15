@@ -30,7 +30,8 @@ jobs:
           base-branch: tier4/main
           sync-pr-branch: sync-tier4-upstream
           sync-target-repository: https://github.com/tier4/autoware_launch.git
-          sync-target-branch: ${{ inputs.sync-target-tag || 'tier4/main' }} 
+          sync-target-branch: tier4/main
+          sync-target-tag: ${{ inputs.sync-target-tag }}
           pr-title: "chore: sync upstream"
           pr-labels: |
             bot
