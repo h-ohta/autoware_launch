@@ -37,7 +37,7 @@ jobs:
 
       - name: Sync tag
         run: |
-          git remote add sync-target ${{ vars.SYNC_TARGET_REPOSITORY }}
+          git remote add sync-target $SYNC_TARGET_REPOSITORY
           git fetch -pPtf --all
           git reset --hard "${{ inputs.sync-target-tag }}"
           git remote rm sync-target
