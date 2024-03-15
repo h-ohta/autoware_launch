@@ -5,10 +5,10 @@ on:
   schedule:
     - cron: 0 0 * * *
   workflow_dispatch:
-    input:
+    inputs:
       sync-target-tag:
         description: "sync-target-tag"
-        required: true
+        required: false
         type: string
         default: ""
 
