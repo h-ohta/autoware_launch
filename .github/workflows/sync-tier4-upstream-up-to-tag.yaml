@@ -47,7 +47,7 @@ jobs:
         id: generate-changelog
         uses: autowarefoundation/autoware-github-actions/generate-changelog@v1
         with:
-          git-cliff-args: origin/${{ vars.BASE_BRANCH }}..HEAD
+          git-cliff-args: origin/$BASE_BRANCH..HEAD
       - name: Replace PR number to URL
         id: replace-pr-number-to-url
         run: |
