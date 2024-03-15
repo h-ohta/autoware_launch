@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: 0 0 * * *
   workflow_dispatch:
+    input:
+      sync-target-tag:
+        description: ""
+        required: false
+        default: ""
 
 jobs:
   sync-tier4-upstream:
@@ -18,13 +23,13 @@ jobs:
           private_key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Run sync-branches
-        uses: autowarefoundation/autoware-github-actions/sync-branches@v1
+        uses: h-ohta/autoware-github-actions/sync-branches@feat/sync-tags
         with:
           token: ${{ steps.generate-token.outputs.token }}
           base-branch: tier4/main
           sync-pr-branch: sync-tier4-upstream
           sync-target-repository: https://github.com/tier4/autoware_launch.git
-          sync-target-branch: tier4/main
+          sync-target-branch: ${{ inputs.sync-target-tag | 'tier4/main' }}
           pr-title: "chore: sync upstream"
           pr-labels: |
             bot
