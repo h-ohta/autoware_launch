@@ -8,7 +8,7 @@ on:
     input:
       sync-target-tag:
         description: "sync-target-tag"
-        required: false
+        required: true
         type: string
         default: ""
 
